@@ -49,10 +49,6 @@ app.get("/api/health", (req, res) => {
   res.status(200).json({ status: "ok", message: "ITSRE API is running." });
 });
 
-// Global Error Handlers
-app.use(notFound);
-app.use(errorHandler);
-
 // Serve Frontend in Production
 import path from "path";
 const __dirname = path.resolve();
@@ -68,6 +64,10 @@ if (process.env.NODE_ENV === "production") {
     res.send("API is running...");
   });
 }
+
+// Global Error Handlers
+app.use(notFound);
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
